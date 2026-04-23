@@ -1,0 +1,35 @@
+import telebot
+import random
+    
+    # Инициализация бота с использованием его токена
+bot = telebot.TeleBot("")
+    
+    # Обработчик команды '/start' и '/hello'
+@bot.message_handler(commands=['start', 'hello'])
+def send_welcome(message):
+        bot.reply_to(message, f'Привет! Я бот {bot.get_me().first_name}!')
+    
+    # Обработчик команды '/heh'
+@bot.message_handler(commands=['heh'])
+def send_heh(message):
+        count_heh = int(message.text.split()[1]) if len(message.text.split()) > 1 else 5
+        bot.reply_to(message, "he" * count_heh)
+@bot.message_handler(commands=['avtor'])
+def send_welcome(message):
+        bot.reply_to(message, f'Привет я Ярослава мне будет 13 и я занимаюсь танцами и учу пайтон!')
+@bot.message_handler(commands=['by'])
+def send_welcome(message):
+        bot.reply_to(message, f'Пока я была рада пообщатся!')
+@bot.message_handler(commands=['scream'])
+def send_welcome(message):
+        bot.reply_to(message, f'aaaaaaaaaaaaaaaaaaaaaaa!')        
+    # Запуск бота
+@bot.message_handler(commands=['f'])
+def send_welcome(message):
+        bot.reply_to(message, f'с командой  random ты можешь задавать вопросы (мысленно или в слух) и бот ответит да или нет') 
+@bot.message_handler(commands=['random'])
+def facts(message):
+     facts_me = ['да', 'нет', 'да', 'нет']
+     bot.reply_to(message, random.choice(facts_me))       
+bot.polling()
+
