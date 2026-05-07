@@ -1,0 +1,38 @@
+import telebot
+    
+    # Инициализация бота с использованием его токена
+bot = telebot.TeleBot("")
+    
+    # Обработчик команды '/start' и '/hello'
+@bot.message_handler(commands=['start', 'hello'])
+def send_welcome(message):
+        bot.reply_to(message, f'Привет! Я бот {bot.get_me().first_name}!')
+    
+    # Обработчик команды '/heh'
+@bot.message_handler(commands=['ecology'])
+def send_ecology(message):
+        count_ecology = int(message.text.split()[1]) if len(message.text.split()) > 1 else 1
+        bot.reply_to(message, "ЭТА КОМАНДА ПОМОЖЕТ ТЕБЕ У ЗНАТЬ БОЛЬШЕ КОМАНД E C O L O G Y " * count_ecology)
+
+@bot.message_handler(commands=['b'])
+def send_b(message):
+        count_b = int(message.text.split()[1]) if len(message.text.split()) > 1 else 1
+        bot.reply_to(message, "Пластиковые бутылки (например, PET) разлагаются около 450 лет. Стеклянные бутылки могут сохраняться в природе более 1000 лет. Алюминиевые банки разлагаются в среднем за 80-200 лет. Бумажные упаковки разлагаются за 2-6 недель.Эти сроки могут варьироваться в зависимости от температуры, влажности и наличия кислорода."* count_b)
+
+@bot.message_handler(commands=['p'])
+def send_p(message):
+        count_p = int(message.text.split()[1]) if len(message.text.split()) > 1 else 1
+        bot.reply_to(message, "Обычные полиэтиленовые пакеты разлагаются в природе от 100 до 500 лет, в зависимости от толщины, состава и условий окружающей среды" * count_p)
+
+@bot.message_handler(commands=['g'])
+def send_g(message):
+        count_g = int(message.text.split()[1]) if len(message.text.split()) > 1 else 1
+        bot.reply_to(message, "Стекло практически не разлагается и может сохраняться в природе сотни и даже тысячи лет." * count_g)
+
+@bot.message_handler(commands=['o'])
+def send_o(message):
+        count_o = int(message.text.split()[1]) if len(message.text.split()) > 1 else 1
+        bot.reply_to(message, "Сроки разложения пищевых отходов зависят от их типа: Кожура апельсина разлагается за 6 месяцев.Кожура банана разлагается за одного месяца.Бумага разлагается за 2-6 недель.Стекло может разлагаться в течение до 1000 лет.Пластик может разлагаться от 100 до 1000 лет в зависимости от типа.Эти сроки могут варьироваться в зависимости от условий, в которых находятся отходы" * count_o)
+
+    # Запуск бота
+bot.polling()
